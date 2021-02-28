@@ -1,0 +1,10 @@
+.profile > h2 {
+  background: #0000004f;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: aliceblue;
+  padding: 5px;
+  font-size: 18px;
+}

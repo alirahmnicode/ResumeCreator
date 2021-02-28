@@ -1,0 +1,139 @@
+{% extends "resume/base.html" %} {% block title %} رزومه شما {% endblock title %} {% block content %} {% comment %}
+<div>{{resume.profile.age}}</div>
+<div>{{resume.profile.marital_status}}</div>
+<li></li>
+<div>{{resume.education.education_level}}</div>
+{% endcomment %} {% comment %} {% endcomment %}
+<div class="w3-content w3-margin-top" style="max-width: 1400px">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img
+            src="{{resume.profile.imageURL}}"
+            style="width: 100%"
+            alt="Avatar"
+          />
+          <div class="w3-display-bottomleft w3-container w3-text-black profile">
+            <h2>
+              {{resume.profile.first_name}} , {{resume.profile.last_name}}
+            </h2>
+            <h2>سن : {{resume.profile.age}}</h2>
+            <h2>وضعیت تاهل : {{resume.profile.marital_status}}</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p>
+            <i
+              class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{resume.profile.job}}
+          </p>
+          <p>
+            <i
+              class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{resume.profile.location}}
+          </p>
+          <p>
+            <i
+              class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            ><a href="{{resume.profile.github}}">github</a>
+            <a href="{{resume.profile.linkdin}}">linkedin</a>
+          </p>
+          <p>
+            <i
+              class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"
+            ></i
+            >{{resume.profile.phon}}
+          </p>
+          <hr />
+          {% if skills %}
+          <p class="w3-large">
+            <b
+              ><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i
+              >مهارت ها</b
+            >
+          </p>
+          {% for skill in skills %}
+
+          <p>{{skill.skill_name}}</p>
+          <div class="w3-light-grey w3-round-xlarge w3-small">
+            <div
+              class="w3-container w3-center w3-round-xlarge w3-teal"
+              style="width: {{skill.skill_level}}%"
+            >
+              {{skill.skill_level}}
+            </div>
+          </div>
+          <br />
+          {% endfor %} {% endif %}
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="w3-twothird">
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16">
+          <i
+            class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+          ></i
+          >Work Experience
+        </h2>
+        {% for work in works %}
+        <div class="w3-container">
+          <h5 class="w3-opacity">
+            <b>{{work.job}} / {{work.place}}</b>
+          </h5>
+          <h6 class="w3-text-teal">
+            <i class="fa fa-calendar fa-fw w3-margin-right"></i> {{work.date}}
+          </h6>
+          <p>{{work.description}}</p>
+          <br />
+        </div>
+        {% endfor %}
+      </div>
+      <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16">
+          <i
+            class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+          ></i
+          >Education
+        </h2>
+        {% for education in educations %}
+        <div class="w3-container">
+          <h5 class="w3-opacity">
+            <b
+              >{{education.university}} از موسسسه یا دانشگاه
+              {{education.education_level}}
+            </b>
+          </h5>
+          <h6 class="w3-text-teal">
+            <i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever
+          </h6>
+          <p>{{education.description}}</p>
+          <hr />
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+  <p>Find me on social media.</p>
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p>
+    Powered by
+    <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
+      >w3.css</a
+    >
+  </p>
+</footer>
+{% endblock content %}

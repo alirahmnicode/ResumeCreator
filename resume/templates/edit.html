@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %} ویرایش رزومه {% endblock title %} {% block content %}
+
+<div class="content">
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')">
+      Profile
+    </button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">
+      Education
+    </button>
+    <button class="tablinks" onclick="openCity(event, 'Iran')">Skill</button>
+    <button class="tablinks" onclick="openCity(event, 'Ali')">Work</button>
+  </div>
+  <div id="London" class="tabcontent">
+    <form action="{% url 'resume:edit_profile' %}" method="POST">
+      {% csrf_token %} {{form.media}} {{ form.as_p }} {{ profile | safe}}
+      <input type="submit" value="ذخیره" />
+    </form>
+  </div>
+  <div id="Paris" class="tabcontent">
+    <form action="{% url 'resume:add_education' %}" method="POST">
+      {% csrf_token %}
+      {{form.media}} 
+      {{ education }}
+      <input type="submit" value="ذخیره" />
+    </form>
+  </div>
+  <div id="Iran" class="tabcontent">
+    <form action="{% url 'resume:add_skill' %}" method="POST">
+      {% csrf_token %} {{ skill }}
+      <input type="submit" value="اضافه" />
+    </form>
+  </div>
+  <div id="Ali" class="tabcontent">
+    <form action="{% url 'resume:add_work' %}" method="POST">
+      {% csrf_token %} {{form.media}} {{ works }}
+      <input type="submit" value="اضافه" />
+    </form>
+  </div>
+</div>
+<script>
+  window.onload = () => {
+    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent[0].style.display = "block";
+    console.log();
+  };
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+{% endblock content %}
